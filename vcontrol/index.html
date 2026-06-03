@@ -1041,9 +1041,8 @@ function updQlt(pfx){
   const mat=document.getElementById(pfx+'-mat').value;
   const qltSel=document.getElementById(pfx+'-qlt');
   const lbl=document.getElementById(pfx+'-qlt-lbl');
-  if(mat==='Oro'){lbl.textContent='Tamaño';qltSel.innerHTML='<option value="">— Seleccionar —</option><option>Chico</option><option>Mediano</option><option>Grande</option>';
-  else if(mat==='Plata'){
-  else{lbl.textContent='Tamaño';qltSel.innerHTML='<option value="">— Seleccionar —</option><option>Chico</option><option>Mediano</option><option>Grande</option>';}
+  lbl.textContent='Tamaño';
+  qltSel.innerHTML='<option value="">— Seleccionar tamaño —</option><option>Chico</option><option>Mediano</option><option>Grande</option>';
 }
 function setMatQlt(pfx,mat,qlt){
   const ms=document.getElementById(pfx+'-mat');
