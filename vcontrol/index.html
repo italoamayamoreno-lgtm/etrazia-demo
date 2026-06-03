@@ -2839,13 +2839,75 @@ function lookupClient(docNum){
 // ════════════════════════════════════════════════
 let currentUser=null;let currentRole=null;let auth=null;
 
+const PORTAL_URL='https://demo.etraziapp.com/';
+
 function initAuth(){
-  /* demo: acceso libre */
   if(!auth)auth=firebase.auth();
+
+  // ── 1. Intentar sesión desde sessionStorage (pasada por el portal) ──
+  const stored=sessionStorage.getItem('frosty_session');
+  if(stored){
+    try{
+      const sess=JSON.parse(stored);
+      if(sess&&sess.email&&sess.uid){
+        // Sesión válida desde el portal — entrar directo
+        currentUser={email:sess.email,uid:sess.uid};
+        currentRole=sess.role||'admin';
+        _enterApp();
+        // También escuchar Firebase Auth para mantener sincronía
+        auth.onAuthStateChanged(user=>{
+          if(!user){
+            // Si Firebase cierra sesión, limpiar y redirigir al portal
+            sessionStorage.removeItem('frosty_session');
+            window.location.href=PORTAL_URL;
+          }
+        });
+        return;
+      }
+    }catch(e){sessionStorage.removeItem('frosty_session');}
+  }
+
+  // ── 2. Sin sessionStorage: esperar Firebase Auth con timeout ──
+  let resolved=false;
+  const timeout=setTimeout(()=>{
+    if(!resolved){
+      resolved=true;
+      // Firebase no respondió — redirigir al portal
+      window.location.href=PORTAL_URL;
+    }
+  },4000);
+
   auth.onAuthStateChanged(async user=>{
-    if(user){currentUser=user;await loadUserRole(user.uid);showApp();}
-    else{currentUser=null;currentRole=null;showLogin();}
+    if(resolved)return;
+    resolved=true;
+    clearTimeout(timeout);
+    if(user){
+      currentUser=user;
+      await loadUserRole(user.uid);
+      // Guardar sesión en sessionStorage para próximas cargas
+      sessionStorage.setItem('frosty_session',JSON.stringify({
+        email:user.email,uid:user.uid,role:currentRole
+      }));
+      showApp();
+    }else{
+      // No hay sesión — redirigir al portal
+      window.location.href=PORTAL_URL;
+    }
   });
+}
+
+function _enterApp(){
+  // Entrada directa sin re-login (sesión desde sessionStorage)
+  document.body.classList.remove('role-admin','role-vendedor');
+  document.body.classList.add('role-'+currentRole);
+  const badge=document.getElementById('user-badge');if(badge)badge.style.display='flex';
+  const nameEl=document.getElementById('user-name-label');
+  const roleEl=document.getElementById('user-role-label');
+  const avatarEl=document.getElementById('user-avatar');
+  if(nameEl)nameEl.textContent=currentUser.email.split('@')[0];
+  if(roleEl)roleEl.textContent=currentRole==='admin'?'Administrador':'Vendedor';
+  if(avatarEl)avatarEl.textContent=currentUser.email[0].toUpperCase();
+  showApp();
 }
 
 async function loadUserRole(uid){
@@ -2864,17 +2926,20 @@ async function loadUserRole(uid){
 
 function showApp(){
   document.getElementById('loading-screen').style.display='none';
-  setTimeout(loadDemoData, 500);
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app-container').style.display='flex';
-  document.body.classList.remove('role-admin','role-vendedor');document.body.classList.add('role-'+currentRole);
-  const badge=document.getElementById('user-badge');if(badge)badge.style.display='flex';
-  const nameEl=document.getElementById('user-name-label');const roleEl=document.getElementById('user-role-label');const avatarEl=document.getElementById('user-avatar');
-  if(nameEl)nameEl.textContent=currentUser.email.split('@')[0];
-  if(roleEl)roleEl.textContent=currentRole==='admin'?'Administrador':'Vendedor';
-  if(avatarEl)avatarEl.textContent=currentUser.email[0].toUpperCase();
+  // Badge/rol (solo si no fue seteado ya por _enterApp)
+  if(!document.body.classList.contains('role-admin')&&!document.body.classList.contains('role-vendedor')){
+    document.body.classList.remove('role-admin','role-vendedor');document.body.classList.add('role-'+currentRole);
+    const badge=document.getElementById('user-badge');if(badge)badge.style.display='flex';
+    const nameEl=document.getElementById('user-name-label');const roleEl=document.getElementById('user-role-label');const avatarEl=document.getElementById('user-avatar');
+    if(nameEl)nameEl.textContent=currentUser.email.split('@')[0];
+    if(roleEl)roleEl.textContent=currentRole==='admin'?'Administrador':'Vendedor';
+    if(avatarEl)avatarEl.textContent=currentUser.email[0].toUpperCase();
+  }
   if(currentRole==='vendedor'){applyVendedorRestrictions();}else{applyAdminView();}
-  db.ref('products').on('value',s=>{const v=s.val();D.products=v?Object.values(v):[];renderAll();setSy('ok');});
+  // Cargar datos: si Firebase está vacío, cargar demo data
+  db.ref('products').on('value',s=>{const v=s.val();D.products=v?Object.values(v):[];if(!D.products.length)loadDemoData();else renderAll();setSy('ok');});
   db.ref('promos').on('value',s=>{window._promos=s.val()||{};});
   db.ref('movements').on('value',s=>{const v=s.val();D.movements=v?Object.values(v):[];renderAll();});
   db.ref('.info/connected').on('value',s=>{const connected=s.val();const bar=document.getElementById('offline-bar');if(bar)bar.classList.toggle('show',!connected);setSy(connected?'ok':'of');if(connected)loadPayFromFirebase();});
@@ -2923,7 +2988,12 @@ async function doLogin(){
 }
 
 function showLoginError(msg){const el=document.getElementById('login-error');el.textContent=msg;el.classList.add('show');}
-async function doLogout(){toggleUserMenu();await auth.signOut();}
+async function doLogout(){
+  toggleUserMenu();
+  sessionStorage.removeItem('frosty_session');
+  try{await auth.signOut();}catch(e){}
+  window.location.href=PORTAL_URL;
+}
 function toggleUserMenu(e){if(e)e.stopPropagation();const menu=document.getElementById('user-menu');if(menu)menu.classList.toggle('open');}
 document.addEventListener('click',()=>{const menu=document.getElementById('user-menu');if(menu)menu.classList.remove('open');});
 
