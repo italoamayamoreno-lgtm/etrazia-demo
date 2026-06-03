@@ -823,8 +823,16 @@ window.navigate = function(view, el) {
 window.goToApp = function(appPath) {
   const activa = CONFIG.apps[appPath];
   if (!activa) { showToast('Esta app no está contratada.', 'error'); return; }
-  sessionStorage.setItem('lafech_desde_portal', '1');
-  sessionStorage.setItem('lafech_desde_portal','1'); sessionStorage.setItem('frosty_desde_portal','1'); window.location.href = `${appPath}/index.html`;
+  // Pasar sesión al Vcontrol via sessionStorage
+  const user = auth.currentUser;
+  if (user) {
+    sessionStorage.setItem('frosty_session', JSON.stringify({
+      email: user.email,
+      uid:   user.uid,
+      role:  'admin'
+    }));
+  }
+  window.location.href = `${appPath}/index.html`;
 };
 
 window.toggleSidebar = function() {
