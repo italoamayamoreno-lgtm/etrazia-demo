@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frosty Helados · EtraziApp</title>
+<title>EtraziApp · Panel de Demos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ═══ TOKENS ══════════════════════════════════════════════════════════ */
 :root {
   --bg0: #0B1120;
   --bg1: #111827;
@@ -17,459 +16,178 @@
   --border-strong: rgba(184,115,51,0.15);
   --accent: #B87333;
   --accent-dim: rgba(184,115,51,0.12);
-  --accent-glow: rgba(184,115,51,0.05);
   --text0: #ede9e0;
   --text1: #8a8780;
   --text2: #3d3c38;
   --green: #3ecf70;
   --green-bg: rgba(62,207,112,0.08);
+  --teal: #2dd4bf;
+  --teal-bg: rgba(45,212,191,0.08);
   --blue: #4a9eff;
   --blue-bg: rgba(74,158,255,0.08);
-  --purple: #a78bfa;
-  --purple-bg: rgba(167,139,250,0.08);
   --red: #f0594a;
-  --red-bg: rgba(240,89,74,0.08);
   --font-head: 'Montserrat', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'DM Mono', monospace;
   --radius: 12px;
   --radius-sm: 8px;
   --transition: 0.2s cubic-bezier(0.4,0,0.2,1);
-
-  /* ── PERSONALIZAR POR CLIENTE ── */
-  --cliente-nombre: "Frosty Helados";
-  --cliente-ruc: "20612345678";
 }
 
-/* ═══ RESET ═══════════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 body { background: var(--bg0); color: var(--text0); font-family: var(--font-body); font-size: 14px; line-height: 1.6; overflow: hidden; }
 button { font-family: var(--font-body); cursor: pointer; border: none; background: none; color: inherit; }
 input { font-family: var(--font-body); font-size: 14px; }
 ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
-::selection { background: var(--accent-dim); }
 
-/* ═══ LOGIN ═══════════════════════════════════════════════════════════ */
+/* ── LOGIN ─────────────────────────────────────────────────────────── */
 #login-screen {
   position: fixed; inset: 0; z-index: 100;
   display: flex; align-items: center; justify-content: center;
   background: var(--bg0);
-  animation: fadeIn 0.5s ease;
 }
 #login-screen.hidden { display: none; }
 
-.login-wrap {
-  width: 100%; max-width: 400px;
-  padding: 24px;
-  display: flex; flex-direction: column; align-items: center;
-}
+.login-wrap { width: 100%; max-width: 400px; padding: 24px; display: flex; flex-direction: column; align-items: center; }
 
-/* Marca cliente en login */
-.login-client-brand {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.login-client-logo {
-  width: 64px; height: 64px;
-  background: var(--accent-dim);
-  border: 1px solid rgba(184,115,51,0.2);
-  border-radius: 16px;
+.login-brand { text-align: center; margin-bottom: 36px; }
+.login-logo {
+  width: 68px; height: 68px; margin: 0 auto 16px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-head);
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--accent);
-  margin: 0 auto 16px;
-  letter-spacing: -1px;
 }
-.login-client-name {
-  font-family: var(--font-head);
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  margin-bottom: 4px;
-}
-.login-client-ruc {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text2);
-  letter-spacing: 0.08em;
-}
-.login-powered {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--text2);
-  letter-spacing: 0.1em;
-  margin-top: 6px;
-}
-.login-powered span { color: var(--accent); }
+.login-title { font-family: var(--font-head); font-size: 20px; font-weight: 800; letter-spacing: 0.04em; margin-bottom: 4px; }
+.login-title span { color: #D97706; font-weight: 400; }
+.login-sub { font-size: 11px; color: var(--text2); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-mono); }
 
-/* Card login */
-.login-card {
-  width: 100%;
-  background: var(--bg1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-}
+.login-card { width: 100%; background: var(--bg1); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
 .login-field { margin-bottom: 14px; }
-.login-label {
-  display: block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text1);
-  margin-bottom: 6px;
-  font-family: var(--font-mono);
-}
-.login-input {
-  width: 100%;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  color: var(--text0);
-  outline: none;
-  transition: border var(--transition);
-}
+.login-label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text1); margin-bottom: 6px; font-family: var(--font-mono); }
+.login-input { width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; color: var(--text0); outline: none; transition: border var(--transition); }
 .login-input:focus { border-color: var(--accent); }
-.login-btn {
-  width: 100%;
-  padding: 11px;
-  background: var(--accent);
-  color: #0B1120;
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  border-radius: var(--radius-sm);
-  margin-top: 6px;
-  transition: opacity var(--transition);
-}
+.login-btn { width: 100%; padding: 11px; background: var(--accent); color: #0B1120; font-family: var(--font-head); font-weight: 700; font-size: 13px; letter-spacing: 0.04em; border-radius: var(--radius-sm); margin-top: 6px; transition: opacity var(--transition); }
 .login-btn:hover { opacity: 0.88; }
 .login-err { font-size: 12px; color: var(--red); margin-top: 10px; min-height: 16px; text-align: center; }
-.login-spinner {
-  display: none; width: 16px; height: 16px;
-  border: 2px solid rgba(7,8,12,0.2); border-top-color: #0B1120;
-  border-radius: 50%; animation: spin 0.6s linear infinite; margin: 8px auto 0;
-}
+.login-spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(7,8,12,0.2); border-top-color: #0B1120; border-radius: 50%; animation: spin 0.6s linear infinite; margin: 8px auto 0; }
 .login-spinner.active { display: block; }
 
-/* ═══ APP ══════════════════════════════════════════════════════════════ */
-#app {
-  display: flex; height: 100vh;
-  opacity: 0; transition: opacity 0.4s ease;
-}
+/* ── APP ───────────────────────────────────────────────────────────── */
+#app { display: flex; height: 100vh; opacity: 0; transition: opacity 0.4s ease; }
 #app.visible { opacity: 1; }
 
-/* ═══ SIDEBAR ══════════════════════════════════════════════════════════ */
-#sidebar {
-  width: 220px; min-width: 220px;
-  background: var(--bg1);
-  border-right: 1px solid var(--border);
-  display: flex; flex-direction: column;
-  transition: width var(--transition), min-width var(--transition);
-  overflow: hidden;
-}
+/* ── SIDEBAR ───────────────────────────────────────────────────────── */
+#sidebar { width: 220px; min-width: 220px; background: var(--bg1); border-right: 1px solid var(--border); display: flex; flex-direction: column; transition: width var(--transition), min-width var(--transition); overflow: hidden; }
 #sidebar.collapsed { width: 60px; min-width: 60px; }
 
-.sidebar-brand {
-  padding: 20px 16px 16px;
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
-}
-.brand-logo-row {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 8px;
-  overflow: hidden;
-}
-.brand-mark {
-  width: 32px; height: 32px; flex-shrink: 0;
-  background: var(--accent-dim);
-  border: 1px solid rgba(184,115,51,0.2);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: -0.5px;
-}
-.brand-name {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  letter-spacing: -0.3px;
-}
-.brand-ruc {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--text2);
-  white-space: nowrap;
-  overflow: hidden;
-}
-.brand-powered {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--text2);
-  letter-spacing: 0.08em;
-  margin-top: 2px;
-  white-space: nowrap;
-}
-.brand-powered span { color: var(--accent); opacity: 0.7; }
-#sidebar.collapsed .brand-name,
-#sidebar.collapsed .brand-ruc,
-#sidebar.collapsed .brand-powered { display: none; }
+.sidebar-brand { padding: 20px 16px 16px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.brand-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; overflow: hidden; }
+.brand-mark { width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.brand-name { font-family: var(--font-head); font-size: 13px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.03em; }
+.brand-name span { color: #D97706; font-weight: 400; }
+.brand-sub { font-family: var(--font-mono); font-size: 9px; color: var(--text2); white-space: nowrap; letter-spacing: 0.1em; text-transform: uppercase; }
+#sidebar.collapsed .brand-name, #sidebar.collapsed .brand-sub { display: none; }
 
 .sidebar-nav { flex: 1; overflow-y: auto; padding: 10px 0; }
-.nav-section {
-  font-size: 9px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--text2);
-  padding: 10px 18px 5px;
-  white-space: nowrap;
-}
+.nav-section { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text2); padding: 10px 18px 5px; white-space: nowrap; }
 #sidebar.collapsed .nav-section { opacity: 0; }
 
-.nav-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 9px 14px;
-  margin: 1px 8px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  color: var(--text1);
-  transition: background var(--transition), color var(--transition);
-  white-space: nowrap; overflow: hidden;
-  text-decoration: none;
-}
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 14px; margin: 1px 8px; border-radius: var(--radius-sm); cursor: pointer; color: var(--text1); transition: background var(--transition), color var(--transition); white-space: nowrap; overflow: hidden; }
 .nav-item:hover { background: var(--bg3); color: var(--text0); }
 .nav-item.active { background: var(--accent-dim); color: var(--accent); }
-.nav-icon {
-  width: 20px; height: 20px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-}
+.nav-icon { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
 .nav-label { font-size: 13px; }
-.nav-badge {
-  margin-left: auto; flex-shrink: 0;
-  background: var(--accent); color: #0B1120;
-  font-size: 9px; font-weight: 700;
-  padding: 2px 6px; border-radius: 99px;
-  font-family: var(--font-mono);
-}
-#sidebar.collapsed .nav-label,
-#sidebar.collapsed .nav-badge,
-#sidebar.collapsed .nav-section { display: none; }
+#sidebar.collapsed .nav-label, #sidebar.collapsed .nav-section { display: none; }
 #sidebar.collapsed .nav-item { justify-content: center; padding: 9px; }
 
-.sidebar-footer {
-  padding: 10px 8px;
-  border-top: 1px solid var(--border);
-  flex-shrink: 0;
-}
-.user-row {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px; overflow: hidden;
-}
-.user-avatar {
-  width: 28px; height: 28px; flex-shrink: 0;
-  background: var(--bg3); border: 1px solid var(--border-strong);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: var(--text1);
-  font-family: var(--font-mono);
-}
+.sidebar-footer { padding: 10px 8px; border-top: 1px solid var(--border); flex-shrink: 0; }
+.user-row { display: flex; align-items: center; gap: 8px; padding: 8px; overflow: hidden; }
+.user-avatar { width: 28px; height: 28px; flex-shrink: 0; background: var(--bg3); border: 1px solid var(--border-strong); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--text1); font-family: var(--font-mono); }
 .user-info { overflow: hidden; }
 .user-email { font-size: 11px; color: var(--text1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .user-role { font-size: 10px; color: var(--text2); font-family: var(--font-mono); }
 #sidebar.collapsed .user-info { display: none; }
-.collapse-btn {
-  width: 100%; padding: 7px;
-  background: var(--bg2); border-radius: var(--radius-sm);
-  color: var(--text1); font-size: 14px;
-  display: flex; align-items: center; justify-content: center;
-  margin-top: 6px;
-  transition: background var(--transition);
-}
+.collapse-btn { width: 100%; padding: 7px; background: var(--bg2); border-radius: var(--radius-sm); color: var(--text1); font-size: 14px; display: flex; align-items: center; justify-content: center; margin-top: 6px; transition: background var(--transition); }
 .collapse-btn:hover { background: var(--bg3); color: var(--text0); }
 
-/* ═══ MAIN ══════════════════════════════════════════════════════════════ */
+/* ── MAIN ──────────────────────────────────────────────────────────── */
 #main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
-/* ═══ TOPBAR ══════════════════════════════════════════════════════════ */
-#topbar {
-  height: 54px; flex-shrink: 0;
-  background: var(--bg1);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center;
-  padding: 0 24px; gap: 12px;
-}
+#topbar { height: 54px; flex-shrink: 0; background: var(--bg1); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; gap: 12px; }
 .topbar-title { font-family: var(--font-head); font-size: 14px; font-weight: 600; flex: 1; }
-.topbar-date {
-  font-family: var(--font-mono); font-size: 11px;
-  color: var(--text2); background: var(--bg2);
-  border: 1px solid var(--border);
-  padding: 3px 10px; border-radius: 6px;
-}
-.btn-signout {
-  display: flex; align-items: center; gap: 5px;
-  padding: 6px 12px;
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 12px; color: var(--text1);
-  transition: background var(--transition), color var(--transition);
-}
+
+/* Badge "modo demo" */
+.demo-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(184,115,51,0.12); border: 1px solid rgba(184,115,51,0.2); border-radius: 6px; padding: 4px 10px; font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.08em; }
+.demo-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+
+.topbar-date { font-family: var(--font-mono); font-size: 11px; color: var(--text2); background: var(--bg2); border: 1px solid var(--border); padding: 3px 10px; border-radius: 6px; }
+.btn-signout { display: flex; align-items: center; gap: 5px; padding: 6px 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 12px; color: var(--text1); transition: background var(--transition), color var(--transition); }
 .btn-signout:hover { background: var(--bg3); color: var(--text0); }
 
-/* ═══ CONTENT ══════════════════════════════════════════════════════════ */
 #content { flex: 1; overflow-y: auto; padding: 28px; }
 .view { display: none; animation: fadeIn 0.25s ease; }
 .view.active { display: block; }
 
-/* ═══ DASHBOARD ════════════════════════════════════════════════════════ */
-.dash-greeting {
-  margin-bottom: 32px;
-}
-.dash-greeting h1 {
-  font-family: var(--font-head);
-  font-size: 26px; font-weight: 700;
-  letter-spacing: -0.5px;
-  margin-bottom: 4px;
-}
+/* ── DASHBOARD ─────────────────────────────────────────────────────── */
+.dash-greeting { margin-bottom: 32px; }
+.dash-greeting h1 { font-family: var(--font-head); font-size: 24px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
 .dash-greeting p { font-size: 13px; color: var(--text1); }
 
-/* Apps grid */
-.apps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-  margin-bottom: 32px;
-}
+/* Apps grid — 2 cols fijas, limpias */
+.apps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
 .app-card {
-  background: var(--bg1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  display: flex; flex-direction: column;
-  gap: 16px;
+  background: var(--bg1); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px; cursor: pointer; display: flex; flex-direction: column; gap: 20px;
   transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden; text-decoration: none; color: inherit;
 }
-.app-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 2px;
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-.app-card:hover { border-color: var(--border-strong); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+.app-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; opacity:0; transition:opacity var(--transition); }
+.app-card:hover { border-color: var(--border-strong); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
 .app-card:hover::before { opacity: 1; }
 .app-card.vcontrol::before { background: var(--accent); }
-.app-card.vcontent::before { background: var(--green); }
-.app-card.vcontent-biz::before { background: var(--blue); }
-.app-card.vfacturacion::before { background: var(--purple); }
+.app-card.vruta::before { background: var(--teal); }
 
-.app-icon {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
+.app-top { display: flex; align-items: flex-start; gap: 14px; }
+.app-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
 .app-card.vcontrol .app-icon { background: var(--accent-dim); }
-.app-card.vcontent .app-icon { background: var(--green-bg); }
-.app-card.vcontent-biz .app-icon { background: var(--blue-bg); }
-.app-card.vfacturacion .app-icon { background: var(--purple-bg); }
+.app-card.vruta .app-icon { background: var(--teal-bg); }
 
 .app-info { flex: 1; }
-.app-name {
-  font-family: var(--font-head);
-  font-size: 15px; font-weight: 700;
-  letter-spacing: -0.3px;
-  margin-bottom: 4px;
-}
+.app-name { font-family: var(--font-head); font-size: 17px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
 .app-desc { font-size: 12px; color: var(--text1); line-height: 1.5; }
-.app-status {
-  display: flex; align-items: center; justify-content: space-between;
-}
-.app-badge {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
-  padding: 3px 8px; border-radius: 4px;
-}
-.app-badge.activo { background: var(--green-bg); color: var(--green); }
-.app-badge.activo::before { content: ''; width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
-.app-badge.inactivo { background: var(--bg3); color: var(--text2); }
-.app-arrow { font-size: 16px; color: var(--text2); transition: color var(--transition), transform var(--transition); }
-.app-card:hover .app-arrow { color: var(--text0); transform: translateX(4px); }
 
-/* App no contratada */
-.app-card.locked {
-  opacity: 0.4;
-  cursor: default;
-  pointer-events: none;
-}
-.app-card.locked::after {
-  content: 'No contratado';
-  position: absolute; top: 12px; right: 12px;
-  font-family: var(--font-mono); font-size: 9px;
-  color: var(--text2);
-  background: var(--bg3); border: 1px solid var(--border);
-  padding: 2px 7px; border-radius: 4px;
-}
+.app-features { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; border-top: 1px solid var(--border); }
+.app-feat { font-size: 12px; color: var(--text1); display: flex; align-items: center; gap: 7px; }
+.app-feat::before { content:''; width:4px; height:4px; border-radius:50%; background: var(--border-strong); flex-shrink:0; }
 
-/* ═══ PERFIL / AYUDA ═══════════════════════════════════════════════════ */
-.section-title {
-  font-family: var(--font-head);
-  font-size: 18px; font-weight: 700;
-  letter-spacing: -0.3px;
-  margin-bottom: 20px;
-}
-.info-card {
-  background: var(--bg1); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px;
-  margin-bottom: 16px;
-}
-.info-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 0; border-bottom: 1px solid var(--border);
-  font-size: 13px;
-}
+.app-footer { display: flex; align-items: center; justify-content: space-between; }
+.app-badge-live { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 10px; padding: 3px 9px; border-radius: 4px; background: var(--green-bg); color: var(--green); }
+.app-badge-live::before { content:''; width:5px; height:5px; background:var(--green); border-radius:50%; }
+.app-cta { font-size: 12px; color: var(--text1); display: flex; align-items: center; gap: 4px; transition: color var(--transition); }
+.app-card:hover .app-cta { color: var(--text0); }
+
+/* ── PERFIL / AYUDA ────────────────────────────────────────────────── */
+.section-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 20px; }
+.info-card { background: var(--bg1); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+.info-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
 .info-row:last-child { border-bottom: none; }
 .info-label { color: var(--text1); }
 .info-value { font-family: var(--font-mono); font-size: 12px; }
 
-/* ═══ TOAST ════════════════════════════════════════════════════════════ */
+/* ── TOAST ─────────────────────────────────────────────────────────── */
 #toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; flex-direction: column; gap: 8px; }
-.toast {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 12px 16px;
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13px; min-width: 240px;
-  animation: slideUp 0.2s ease;
-}
+.toast { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-size: 13px; min-width: 240px; animation: slideUp 0.2s ease; }
 .toast-icon { font-size: 15px; flex-shrink: 0; }
 .toast.success .toast-icon { color: var(--green); }
 .toast.error .toast-icon { color: var(--red); }
 .toast.info .toast-icon { color: var(--blue); }
 
-/* ═══ ANIMATIONS ═══════════════════════════════════════════════════════ */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes slideUp { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from{opacity:0}to{opacity:1} }
+@keyframes slideUp { from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1} }
+@keyframes spin { to{transform:rotate(360deg)} }
 
-/* ═══ RESPONSIVE ═══════════════════════════════════════════════════════ */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .apps-grid { grid-template-columns: 1fr; }
   #content { padding: 16px; }
   #sidebar { position: fixed; z-index: 20; height: 100vh; transform: translateX(-100%); transition: transform var(--transition); }
@@ -479,26 +197,20 @@ input { font-family: var(--font-body); font-size: 14px; }
 </head>
 <body>
 
-<!-- ═══ LOGIN ══════════════════════════════════════════════════════════ -->
+<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-wrap">
-    <div class="login-client-brand">
-      <div class="login-client-logo" id="login-initials">LC</div>
-      <div class="login-client-name" id="login-nombre">Frosty Helados</div>
-      <div class="login-client-ruc" id="login-ruc">RUC 20612345678</div>
-      <div class="login-powered">
-        <span style="display:inline-flex;align-items:center;gap:5px;vertical-align:middle">
-          <svg width="16" height="16" viewBox="0 0 44 44" fill="none">
-            <path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#lg1)" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/>
-            <defs><linearGradient id="lg1" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/>
-            </linearGradient></defs>
-          </svg>
-          <span style="font-size:10px;color:#94A3B8;font-family:'Inter',sans-serif;letter-spacing:0.05em">powered by </span><span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;letter-spacing:0.08em;color:#F8FAFC">ETRAZIA</span>
-        </span>
+    <div class="login-brand">
+      <div class="login-logo">
+        <svg width="68" height="68" viewBox="0 0 44 44" fill="none">
+          <path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#lg1)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/>
+          <defs><linearGradient id="lg1" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs>
+        </svg>
       </div>
+      <div class="login-title">ETRAZIA<span>app</span></div>
+      <div class="login-sub">Panel de Demos</div>
     </div>
     <div class="login-card">
       <div class="login-field">
@@ -516,30 +228,22 @@ input { font-family: var(--font-body); font-size: 14px; }
   </div>
 </div>
 
-<!-- ═══ APP ═════════════════════════════════════════════════════════════ -->
+<!-- APP -->
 <div id="app">
-
-  <!-- SIDEBAR -->
   <aside id="sidebar">
     <div class="sidebar-brand">
       <div class="brand-logo-row">
-        <div class="brand-mark" id="sb-initials">LC</div>
-        <div class="brand-name" id="sb-nombre">Frosty Helados</div>
-      </div>
-      <div class="brand-ruc" id="sb-ruc">RUC 20612345678</div>
-      <div class="brand-powered">
-        <span style="display:inline-flex;align-items:center;gap:4px;vertical-align:middle">
-          <svg width="12" height="12" viewBox="0 0 44 44" fill="none">
+        <div class="brand-mark">
+          <svg width="32" height="32" viewBox="0 0 44 44" fill="none">
             <path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="5" fill="none" stroke-linecap="round"/>
             <path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#lg2)" stroke-width="5" fill="none" stroke-linecap="round"/>
             <rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/>
-            <defs><linearGradient id="lg2" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/>
-            </linearGradient></defs>
+            <defs><linearGradient id="lg2" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs>
           </svg>
-          <span style="font-size:9px;color:#94A3B8;font-family:'Inter',sans-serif">powered by </span><span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:0.08em;color:rgba(248,250,252,0.7)">ETRAZIA</span>
-        </span>
+        </div>
+        <div class="brand-name">ETRAZIA<span>app</span></div>
       </div>
+      <div class="brand-sub">Panel de Demos</div>
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section">Principal</div>
@@ -547,32 +251,18 @@ input { font-family: var(--font-body); font-size: 14px; }
         <div class="nav-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         </div>
-        <span class="nav-label">Mis Apps</span>
+        <span class="nav-label">Demos</span>
       </div>
-      <div class="nav-section">Apps</div>
-      <div class="nav-item" id="nav-vcontrol" onclick="goToApp('vcontrol')">
-        <div class="nav-icon">🏪</div>
+      <div class="nav-section">Apps demo</div>
+      <div class="nav-item" onclick="goToApp('vcontrol')">
+        <div class="nav-icon">📦</div>
         <span class="nav-label">Vcontrol</span>
       </div>
-      <div class="nav-item" id="nav-vcontent" onclick="goToApp('vcontent')">
-        <div class="nav-icon">✍️</div>
-        <span class="nav-label">Vcontent Personal</span>
-      </div>
-      <div class="nav-item" id="nav-vcontent-biz" onclick="goToApp('vcontent-biz')">
-        <div class="nav-icon">📱</div>
-        <span class="nav-label">Vcontent Business</span>
-      </div>
-      <div class="nav-item" id="nav-vfacturacion" onclick="goToApp('vfacturacion')">
-        <div class="nav-icon">🧾</div>
-        <span class="nav-label">Vfacturación</span>
+      <div class="nav-item" onclick="goToApp('vruta')">
+        <div class="nav-icon">🚚</div>
+        <span class="nav-label">Vruta</span>
       </div>
       <div class="nav-section">Cuenta</div>
-      <div class="nav-item" onclick="navigate('perfil', this)">
-        <div class="nav-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        </div>
-        <span class="nav-label">Mi Perfil</span>
-      </div>
       <div class="nav-item" onclick="navigate('ayuda', this)">
         <div class="nav-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="1"/></svg>
@@ -588,16 +278,16 @@ input { font-family: var(--font-body); font-size: 14px; }
           <div class="user-role">administrador</div>
         </div>
       </div>
-      <button class="collapse-btn" onclick="toggleSidebar()" title="Colapsar">
+      <button class="collapse-btn" onclick="toggleSidebar()">
         <svg id="collapse-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main id="main">
     <header id="topbar">
-      <div class="topbar-title" id="topbar-title">Mis Apps</div>
+      <div class="topbar-title" id="topbar-title">Demos</div>
+      <div class="demo-badge">MODO DEMO</div>
       <span class="topbar-date" id="topbar-date"></span>
       <button class="btn-signout" onclick="doSignOut()">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
@@ -610,23 +300,55 @@ input { font-family: var(--font-body); font-size: 14px; }
       <!-- DASHBOARD -->
       <div class="view active" id="view-dashboard">
         <div class="dash-greeting">
-          <h1 id="dash-greeting-text">Bienvenido 👋</h1>
-          <p id="dash-greeting-sub">Accede a tus aplicaciones contratadas desde aquí.</p>
+          <h1 id="dash-greeting-text">Demos EtraziApp 👋</h1>
+          <p>Accede a cada aplicación en modo demo sin login. Ideal para presentaciones comerciales.</p>
         </div>
-        <div class="apps-grid" id="apps-grid">
-          <!-- Generado dinámicamente -->
-        </div>
-      </div>
+        <div class="apps-grid">
 
-      <!-- PERFIL -->
-      <div class="view" id="view-perfil">
-        <div class="section-title">Mi Perfil</div>
-        <div class="info-card">
-          <div class="info-row"><span class="info-label">Negocio</span><span class="info-value" id="perfil-nombre">—</span></div>
-          <div class="info-row"><span class="info-label">RUC</span><span class="info-value" id="perfil-ruc">—</span></div>
-          <div class="info-row"><span class="info-label">Email de acceso</span><span class="info-value" id="perfil-email">—</span></div>
-          <div class="info-row"><span class="info-label">Plan contratado</span><span class="info-value" id="perfil-plan">—</span></div>
-          <div class="info-row"><span class="info-label">Estado</span><span class="info-value" style="color:var(--green)">Activo</span></div>
+          <!-- VCONTROL -->
+          <div class="app-card vcontrol" onclick="goToApp('vcontrol')">
+            <div class="app-top">
+              <div class="app-icon">📦</div>
+              <div class="app-info">
+                <div class="app-name">Vcontrol</div>
+                <div class="app-desc">Gestión comercial completa — inventario, CRM, ventas, finanzas y pagos QR para negocios.</div>
+              </div>
+            </div>
+            <div class="app-features">
+              <div class="app-feat">Inventario con entradas y ajustes</div>
+              <div class="app-feat">CRM con segmentación VIP / Frecuente</div>
+              <div class="app-feat">Ventas con comprobante PDF</div>
+              <div class="app-feat">Finanzas y reporte SUNAT (RER)</div>
+              <div class="app-feat">Pagos QR Yape / Plin</div>
+            </div>
+            <div class="app-footer">
+              <span class="app-badge-live">Demo activa</span>
+              <span class="app-cta">Abrir demo →</span>
+            </div>
+          </div>
+
+          <!-- VRUTA -->
+          <div class="app-card vruta" onclick="goToApp('vruta')">
+            <div class="app-top">
+              <div class="app-icon">🚚</div>
+              <div class="app-info">
+                <div class="app-name">Vruta</div>
+                <div class="app-desc">Gestión de rutas y entregas para marcas DTC con flota propia. Algoritmo de optimización inteligente.</div>
+              </div>
+            </div>
+            <div class="app-features">
+              <div class="app-feat">Optimización automática de ruta</div>
+              <div class="app-feat">Mapa visual en tiempo real</div>
+              <div class="app-feat">App mobile para repartidores</div>
+              <div class="app-feat">Evidencia fotográfica de entrega</div>
+              <div class="app-feat">Historial y exportación Excel</div>
+            </div>
+            <div class="app-footer">
+              <span class="app-badge-live">Demo activa</span>
+              <span class="app-cta">Abrir demo →</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -634,13 +356,9 @@ input { font-family: var(--font-body); font-size: 14px; }
       <div class="view" id="view-ayuda">
         <div class="section-title">Ayuda y Soporte</div>
         <div class="info-card">
-          <div class="info-row"><span class="info-label">Soporte por WhatsApp</span><a href="https://wa.me/51999999999" target="_blank" style="color:var(--accent);font-size:13px">Contactar →</a></div>
-          <div class="info-row"><span class="info-label">Email de soporte</span><span class="info-value">soporte@etrazia.com</span></div>
+          <div class="info-row"><span class="info-label">Soporte por WhatsApp</span><a href="https://wa.me/51981527408" target="_blank" style="color:var(--accent);font-size:13px">Contactar →</a></div>
           <div class="info-row"><span class="info-label">Horario de atención</span><span class="info-value">Lun–Vie 9am–6pm (Lima)</span></div>
-        </div>
-        <div class="info-card" style="margin-top:16px">
-          <div style="font-size:13px;color:var(--text1);margin-bottom:12px">¿Encontraste un problema? Escríbenos y te respondemos en menos de 24 horas.</div>
-          <a href="mailto:soporte@etrazia.com" style="display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#0B1120;font-family:var(--font-head);font-weight:700;font-size:12px;padding:8px 16px;border-radius:var(--radius-sm);text-decoration:none">✉ Enviar mensaje</a>
+          <div class="info-row"><span class="info-label">Web</span><a href="https://etraziapp.com" target="_blank" style="color:var(--accent);font-size:13px">etraziapp.com →</a></div>
         </div>
       </div>
 
@@ -650,27 +368,7 @@ input { font-family: var(--font-body); font-size: 14px; }
 
 <div id="toast-container"></div>
 
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<!-- CONFIGURACIÓN DEL CLIENTE — EDITAR POR CADA CLIENTE               -->
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<script>
-const CONFIG = {
-  nombre:  "Frosty Helados",
-  ruc:     "20612345678",
-  apps: {
-    vcontrol:      true,
-    vcontent:      true,
-    'vcontent-biz': false,
-    vfacturacion:  false,
-  }
-};
-</script>
-
-<!-- ═══════════════════════════════════════════════════════════════════ -->
-<!-- FIREBASE SDK                                                       -->
-<!-- ═══════════════════════════════════════════════════════════════════ -->
 <script type="module">
-// ── FIREBASECONFIG LAFECH ──
 const firebaseConfig = {
   apiKey:            "AIzaSyA7O4smNpxXVfOuwvIZKkqGqWyVqdPBY7s",
   authDomain:        "eimpact-demo.firebaseapp.com",
@@ -685,17 +383,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut as fbSignOut }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
+const auth = getAuth(initializeApp(firebaseConfig));
 
-const APPS_META = {
-  vcontrol:       { nombre: 'Vcontrol',          desc: 'Ventas, inventario y CRM',               icon: '🏪', color: 'vcontrol',     path: 'vcontrol' },
-  vcontent:       { nombre: 'Vcontent Personal',  desc: 'LinkedIn e Instagram personal',           icon: '✍️', color: 'vcontent',     path: 'vcontent' },
-  'vcontent-biz': { nombre: 'Vcontent Business',  desc: 'Instagram y TikTok de tu negocio',        icon: '📱', color: 'vcontent-biz', path: 'vcontent-biz' },
-  vfacturacion:   { nombre: 'Vfacturación',       desc: 'Boletas y facturas electrónicas',         icon: '🧾', color: 'vfacturacion', path: 'vfacturacion' },
+/* ── DESTINOS DE CADA APP ─────────────────────────────────────────── */
+const APP_URLS = {
+  vcontrol: 'vcontrol/index.html',
+  vruta:    'https://vruta.etraziapp.com',
 };
 
-// ── AUTH STATE ────────────────────────────────────────────────────────
+/* ── AUTH STATE ───────────────────────────────────────────────────── */
 onAuthStateChanged(auth, user => {
   if (user) {
     showApp(user);
@@ -706,78 +402,20 @@ onAuthStateChanged(auth, user => {
 });
 
 function showApp(user) {
-  // Setear datos del cliente
-  const { nombre, ruc, apps } = CONFIG;
-  const initials = nombre.split(' ').slice(0,2).map(w => w[0]).join('').toUpperCase();
-
-  // Login screen
-  document.getElementById('login-initials').textContent = initials;
-  document.getElementById('login-nombre').textContent = nombre;
-  document.getElementById('login-ruc').textContent = `RUC ${ruc}`;
-
-  // Sidebar
-  document.getElementById('sb-initials').textContent = initials;
-  document.getElementById('sb-nombre').textContent = nombre;
-  document.getElementById('sb-ruc').textContent = `RUC ${ruc}`;
-
-  // User
   const emailShort = user.email?.split('@')[0] || '?';
   document.getElementById('user-avatar').textContent = emailShort.slice(0,2).toUpperCase();
   document.getElementById('user-email').textContent = user.email;
-
-  // Perfil
-  document.getElementById('perfil-nombre').textContent = nombre;
-  document.getElementById('perfil-ruc').textContent = ruc;
-  document.getElementById('perfil-email').textContent = user.email;
-  document.getElementById('perfil-plan').textContent = Object.entries(apps).filter(([,v])=>v).map(([k])=>APPS_META[k]?.nombre).join(', ');
-
-  // Topbar fecha
   document.getElementById('topbar-date').textContent = new Date().toLocaleDateString('es-PE', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
 
-  // Greeting
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Buenos días' : hour < 19 ? 'Buenas tardes' : 'Buenas noches';
-  document.getElementById('dash-greeting-text').textContent = `${greet} 👋`;
-  document.getElementById('dash-greeting-sub').textContent = `Bienvenido a tu panel de ${nombre}. Selecciona una app para comenzar.`;
+  document.getElementById('dash-greeting-text').textContent = `${greet}, Talo 👋`;
 
-  // Mostrar/ocultar nav items según apps contratadas
-  Object.entries(apps).forEach(([appId, activa]) => {
-    const navEl = document.getElementById(`nav-${appId}`);
-    if (navEl) navEl.style.opacity = activa ? '1' : '0.3';
-    if (navEl) navEl.style.pointerEvents = activa ? 'auto' : 'none';
-  });
-
-  // Render apps grid
-  renderAppsGrid(apps);
-
-  // Mostrar app
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app').classList.add('visible');
 }
 
-function renderAppsGrid(apps) {
-  const grid = document.getElementById('apps-grid');
-  grid.innerHTML = Object.entries(APPS_META).map(([id, meta]) => {
-    const activa = apps[id];
-    return `
-      <div class="app-card ${meta.color} ${activa ? '' : 'locked'}"
-           onclick="${activa ? `goToApp('${meta.path}')` : ''}">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="app-icon">${meta.icon}</div>
-          <div class="app-info">
-            <div class="app-name">${meta.nombre}</div>
-            <div class="app-desc">${meta.desc}</div>
-          </div>
-        </div>
-        <div class="app-status">
-          <span class="app-badge ${activa ? 'activo' : 'inactivo'}">${activa ? 'Activo' : 'No contratado'}</span>
-          ${activa ? '<span class="app-arrow">→</span>' : ''}
-        </div>
-      </div>`;
-  }).join('');
-}
-
-// ── LOGIN ─────────────────────────────────────────────────────────────
+/* ── LOGIN ────────────────────────────────────────────────────────── */
 window.doLogin = async function() {
   const email = document.getElementById('login-email').value.trim();
   const pass  = document.getElementById('login-pass').value;
@@ -810,29 +448,20 @@ window.doSignOut = async function() {
   showToast('Sesión cerrada.', 'info');
 };
 
-// ── NAV ───────────────────────────────────────────────────────────────
+/* ── NAV ──────────────────────────────────────────────────────────── */
 window.navigate = function(view, el) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById(`view-${view}`).classList.add('active');
   if (el) el.classList.add('active');
-  const titles = { dashboard: 'Mis Apps', perfil: 'Mi Perfil', ayuda: 'Ayuda y Soporte' };
+  const titles = { dashboard: 'Demos', ayuda: 'Ayuda y Soporte' };
   document.getElementById('topbar-title').textContent = titles[view] || view;
 };
 
-window.goToApp = function(appPath) {
-  const activa = CONFIG.apps[appPath];
-  if (!activa) { showToast('Esta app no está contratada.', 'error'); return; }
-  // Pasar sesión al Vcontrol via sessionStorage
-  const user = auth.currentUser;
-  if (user) {
-    sessionStorage.setItem('frosty_session', JSON.stringify({
-      email: user.email,
-      uid:   user.uid,
-      role:  'admin'
-    }));
-  }
-  window.location.href = `${appPath}/index.html`;
+window.goToApp = function(appId) {
+  const url = APP_URLS[appId];
+  if (!url) { showToast('App no disponible.', 'error'); return; }
+  window.location.href = url;
 };
 
 window.toggleSidebar = function() {
@@ -842,7 +471,7 @@ window.toggleSidebar = function() {
   ic.style.transform = sb.classList.contains('collapsed') ? 'rotate(180deg)' : '';
 };
 
-// ── TOAST ─────────────────────────────────────────────────────────────
+/* ── TOAST ────────────────────────────────────────────────────────── */
 window.showToast = function(msg, type = 'info') {
   const icons = { success: '✓', error: '✕', info: 'ℹ' };
   const tc = document.getElementById('toast-container');
