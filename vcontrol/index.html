@@ -6,9 +6,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#B87333">
-<title>🧊 Frosty</title>
+<title>Vcontrol · EtraziApp Demo</title>
 <script>
-const md={name:"Frosty Helados",short_name:"Frosty Helados",start_url:".",display:"standalone",background_color:"#0B1120",theme_color:"#B87333",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%230B1120'/><text x='96' y='130' font-size='100' text-anchor='middle'>🧊</text></svg>",sizes:"192x192",type:"image/svg+xml"}]};
+const md={name:"Vcontrol Demo",short_name:"Vcontrol Demo",start_url:".",display:"standalone",background_color:"#0B1120",theme_color:"#B87333",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%230B1120'/><text x='96' y='130' font-size='100' text-anchor='middle'>🧊</text></svg>",sizes:"192x192",type:"image/svg+xml"}]};
 const b=new Blob([JSON.stringify(md)],{type:'application/json'});
 const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(b);document.head.appendChild(l);
 </script>
@@ -429,10 +429,10 @@ body.role-admin .admin-only-block{display:flex !important}
 <div id="login-screen" class="hidden">
   <div class="login-card">
     <div class="login-logo">
-      <div class="login-logo-gem">🧊</div>
-      <div class="login-logo-name">Frosty Helados</div>
+      <div class="login-logo-gem">📦</div>
+      <div class="login-logo-name">Vcontrol Demo</div>
     </div>
-    <div class="login-title">Sistema de Gestión Comercial</div>
+    <div class="login-title">Vcontrol · Demo</div>
     <div class="login-field">
       <label>Correo electrónico</label>
       <input type="email" id="login-email" placeholder="correo@ejemplo.com" onkeydown="if(event.key==='Enter')doLogin()">
@@ -446,13 +446,13 @@ body.role-admin .admin-only-block{display:flex !important}
     <div style="text-align:center;margin-top:14px">
       <button onclick="doForgotPassword()" style="background:none;border:none;font-family:var(--fb);font-size:12px;color:var(--P);cursor:pointer;text-decoration:underline">¿Olvidaste tu contraseña?</button>
     </div>
-    <div class="login-footer">Frosty Helados © 2026 — Acceso restringido · <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.06em;color:var(--P)">powered by ETRAZIA</span></div>
+    <div class="login-footer">EtraziApp Demo © 2026 — Acceso restringido · <span style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.06em;color:var(--P)">powered by ETRAZIA</span></div>
   </div>
 </div>
 
 <!-- LOADING SCREEN — visible mientras Firebase verifica sesión -->
 <div id="loading-screen" style="position:fixed;inset:0;background:var(--bg);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
-  <div style="font-family:'Montserrat',sans-serif;font-size:28px;font-style:italic;font-weight:600;color:var(--P);letter-spacing:.04em">🧊 Frosty</div>
+  <div style="font-family:'Montserrat',sans-serif;font-size:28px;font-style:italic;font-weight:600;color:var(--P);letter-spacing:.04em">📦 Vcontrol Demo</div>
   <div style="width:32px;height:32px;border:3px solid var(--PL);border-top-color:var(--P);border-radius:50%;animation:spin .8s linear infinite"></div>
   <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
 </div>
@@ -461,7 +461,7 @@ body.role-admin .admin-only-block{display:flex !important}
 <div id="offline-bar">Sin conexión — los cambios se sincronizarán al reconectar</div>
 <div class="topbar">
   <div style="display:flex;flex-direction:column;justify-content:center;cursor:pointer;gap:1px" onclick="showPage('catalogo')">
-    <div class="logo"><span class="logo-gem">🧊</span>Frosty Helados</div>
+    <div class="logo">📦 Vcontrol Demo</div>
     <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--P);opacity:0.7;margin-left:23px;text-transform:uppercase">powered by Etrazia</div>
   </div>
   <nav class="topbar-nav">
@@ -715,16 +715,16 @@ body.role-admin .admin-only-block{display:flex !important}
   <span class="mh"></span>
   <div class="mt">Nuevo Producto</div>
   <div class="fg">
-    <div class="fr"><label>ID Producto</label><input id="np-id" placeholder="FRO-001"></div>
+    <div class="fr"><label>ID Producto</label><input id="np-id" placeholder="PRD-001"></div>
     <div class="fr"><label>Categoría</label>
       <select id="np-cat">
         <option value="">— Seleccionar —</option>
-        <option>Raspadillas</option><option>Cremoladas</option><option>Bubble Tea</option>
-        <option>Helados</option><option>Bocaditos</option><option>Bebidas</option><option>Otro</option>
+        <option>Electrónica</option><option>Ropa y Calzado</option><option>Alimentos</option>
+        <option>Bebidas</option><option>Hogar</option><option>Belleza</option><option>Otro</option>
       </select>
     </div>
   </div>
-  <div class="fr"><label>Nombre del producto</label><input id="np-nm" placeholder="Ej: Bubble Tea de Taro"></div>
+  <div class="fr"><label>Nombre del producto</label><input id="np-nm" placeholder="Ej: Audífonos Bluetooth"></div>
   <div class="fr"><label>Descripción detallada</label><textarea id="np-desc" placeholder="Sabor, presentación, tamaño..."></textarea></div>
 <div class="fr">
   <label>Fotos del producto (hasta 3)</label>
@@ -792,8 +792,8 @@ body.role-admin .admin-only-block{display:flex !important}
     <div class="fr"><label>ID</label><input id="ep-id" readonly style="background:var(--surf3);color:var(--tx3)"></div>
     <div class="fr"><label>Categoría</label>
       <select id="ep-cat">
-        <option>Raspadillas</option><option>Cremoladas</option><option>Bubble Tea</option>
-        <option>Helados</option><option>Bocaditos</option><option>Bebidas</option><option>Otro</option>
+        <option>Electrónica</option><option>Ropa y Calzado</option><option>Alimentos</option>
+        <option>Bebidas</option><option>Hogar</option><option>Belleza</option><option>Otro</option>
       </select>
     </div>
   </div>
@@ -946,7 +946,7 @@ body.role-admin .admin-only-block{display:flex !important}
 // FIREBASE
 // ════════════════════════════════════════════════
 let db=null;
-const LK='frosty_v1';
+const LK='vcontrol_demo_v1';
 let D={products:[],movements:[]};
 
 
@@ -955,25 +955,25 @@ function loadDemoData(){
   if(D.products.length>0) return;
   const now=Date.now();
   D.products=[
-    {id:'FRO-001',name:'Raspadilla de Fresa',cat:'Raspadillas',mat:'Vaso',sub:'Grande',cost:1.5,price:5,stock:18,img:''},
-    {id:'FRO-002',name:'Raspadilla de Maracuyá',cat:'Raspadillas',mat:'Vaso',sub:'Grande',cost:1.5,price:5,stock:12,img:''},
-    {id:'FRO-003',name:'Cremolada de Lúcuma',cat:'Cremoladas',mat:'Copa',sub:'Mediano',cost:3,price:9,stock:20,img:''},
-    {id:'FRO-004',name:'Cremolada de Coco',cat:'Cremoladas',mat:'Copa',sub:'Mediano',cost:3,price:9,stock:3,img:''},
-    {id:'FRO-005',name:'Bubble Tea Taro',cat:'Bubble Tea',mat:'Vaso',sub:'Grande',cost:5,price:14,stock:15,img:''},
-    {id:'FRO-006',name:'Bubble Tea Matcha',cat:'Bubble Tea',mat:'Vaso',sub:'Grande',cost:5.5,price:15,stock:10,img:''},
-    {id:'FRO-007',name:'Bubble Tea Fresa',cat:'Bubble Tea',mat:'Vaso',sub:'Grande',cost:5,price:14,stock:2,img:''},
-    {id:'FRO-008',name:'Bocadito de Brownie',cat:'Bocaditos',mat:'Caja',sub:'Chico',cost:2,price:6,stock:30,img:''},
-    {id:'FRO-009',name:'Bocadito de Oreo',cat:'Bocaditos',mat:'Caja',sub:'Chico',cost:2,price:6,stock:25,img:''},
-    {id:'FRO-010',name:'Helado de Vainilla',cat:'Helados',mat:'Copa',sub:'Chico',cost:1.8,price:5,stock:40,img:''},
-    {id:'FRO-011',name:'Helado de Chocolate',cat:'Helados',mat:'Copa',sub:'Chico',cost:1.8,price:5,stock:4,img:''},
-    {id:'FRO-012',name:'Sundae de Caramelo',cat:'Helados',mat:'Copa',sub:'Grande',cost:4,price:12,stock:8,img:''},
+    {id:'PRD-001',name:'Polo Básico Blanco',cat:'Ropa y Calzado',mat:'Unidad',sub:'Talla M',cost:25,price:59,stock:18,img:''},
+    {id:'PRD-002',name:'Jeans Slim Fit',cat:'Ropa y Calzado',mat:'Unidad',sub:'Talla 32',cost:45,price:120,stock:12,img:''},
+    {id:'PRD-003',name:'Audífonos Bluetooth',cat:'Electrónica',mat:'Unidad',sub:'Estándar',cost:80,price:199,stock:20,img:''},
+    {id:'PRD-004',name:'Funda Celular Universal',cat:'Electrónica',mat:'Unidad',sub:'Universal',cost:8,price:25,stock:3,img:''},
+    {id:'PRD-005',name:'Café Molido Premium',cat:'Alimentos',mat:'Bolsa',sub:'250g',cost:15,price:38,stock:15,img:''},
+    {id:'PRD-006',name:'Aceite de Oliva Extra Virgen',cat:'Alimentos',mat:'Botella',sub:'500ml',cost:18,price:42,stock:10,img:''},
+    {id:'PRD-007',name:'Shampoo Argan Oil',cat:'Belleza',mat:'Frasco',sub:'400ml',cost:12,price:32,stock:2,img:''},
+    {id:'PRD-008',name:'Crema Hidratante',cat:'Belleza',mat:'Pote',sub:'200ml',cost:20,price:55,stock:30,img:''},
+    {id:'PRD-009',name:'Set Toallas de Baño',cat:'Hogar',mat:'Set',sub:'3 piezas',cost:30,price:75,stock:25,img:''},
+    {id:'PRD-010',name:'Vela Aromática Lavanda',cat:'Hogar',mat:'Unidad',sub:'200g',cost:10,price:28,stock:40,img:''},
+    {id:'PRD-011',name:'Agua Mineral',cat:'Bebidas',mat:'Botella',sub:'625ml',cost:1.5,price:4,stock:4,img:''},
+    {id:'PRD-012',name:'Jugo Natural Naranja',cat:'Bebidas',mat:'Botella',sub:'1L',cost:6,price:16,stock:8,img:''},
   ];
   D.movements=[
-    {id:'m1',type:'entrada',prodId:'FRO-001',prodName:'Raspadilla de Fresa',qty:20,date:new Date(now-86400000*5).toISOString().split('T')[0],note:'Stock inicial',user:'admin'},
-    {id:'m2',type:'entrada',prodId:'FRO-003',prodName:'Cremolada de Lúcuma',qty:20,date:new Date(now-86400000*4).toISOString().split('T')[0],note:'Stock inicial',user:'admin'},
-    {id:'m3',type:'entrada',prodId:'FRO-005',prodName:'Bubble Tea Taro',qty:15,date:new Date(now-86400000*3).toISOString().split('T')[0],note:'Reposición',user:'admin'},
-    {id:'m4',type:'entrada',prodId:'FRO-010',prodName:'Helado de Vainilla',qty:40,date:new Date(now-86400000*2).toISOString().split('T')[0],note:'Compra proveedor',user:'admin'},
-    {id:'m5',type:'ajuste',prodId:'FRO-007',prodName:'Bubble Tea Fresa',qty:-3,date:new Date(now-86400000).toISOString().split('T')[0],note:'Merma',user:'admin'},
+    {id:'m1',type:'entrada',prodId:'PRD-001',prodName:'Polo Básico Blanco',qty:20,date:new Date(now-86400000*5).toISOString().split('T')[0],note:'Stock inicial',user:'admin'},
+    {id:'m2',type:'entrada',prodId:'PRD-003',prodName:'Audífonos Bluetooth',qty:20,date:new Date(now-86400000*4).toISOString().split('T')[0],note:'Stock inicial',user:'admin'},
+    {id:'m3',type:'entrada',prodId:'PRD-005',prodName:'Café Molido Premium',qty:15,date:new Date(now-86400000*3).toISOString().split('T')[0],note:'Reposición',user:'admin'},
+    {id:'m4',type:'entrada',prodId:'PRD-010',prodName:'Vela Aromática Lavanda',qty:40,date:new Date(now-86400000*2).toISOString().split('T')[0],note:'Compra proveedor',user:'admin'},
+    {id:'m5',type:'ajuste',prodId:'PRD-007',prodName:'Shampoo Argan Oil',qty:3,date:new Date(now-86400000).toISOString().split('T')[0],note:'Ajuste inventario',user:'admin'},
   ];
   svLocal();
   renderAll();
@@ -1039,7 +1039,7 @@ function prevFoto(inp,pvId,btnId){
 }
 function buildCarousel(imgs,containerId){
   const wrap=document.getElementById(containerId);
-  if(!imgs.length){wrap.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;color:var(--tx3)">🧊</div>';return;}
+  if(!imgs.length){wrap.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;color:var(--tx3)">📦</div>';return;}
   const imgTags=imgs.map((src,i)=>`<img src="${src}" alt="" class="${i===0?'active':''}">`).join('');
   const dots=imgs.length>1?`<div class="carousel-dots">${imgs.map((_,i)=>`<button class="carousel-dot${i===0?' on':''}" onclick="carouselGo('${containerId}',${i})"></button>`).join('')}</div>`:'';
   const btns=imgs.length>1?`<button class="carousel-btn prev" onclick="carouselStep('${containerId}',-1)">‹</button><button class="carousel-btn next" onclick="carouselStep('${containerId}',1)">›</button>`:'';
@@ -1620,7 +1620,7 @@ function exportClients(){
   const ws=XLSX.utils.aoa_to_sheet(rows);
   ws['!cols']=[{wch:12},{wch:10},{wch:30},{wch:14},{wch:10},{wch:14},{wch:12},{wch:14},{wch:14},{wch:22},{wch:14},{wch:26},{wch:16},{wch:20}];
   XLSX.utils.book_append_sheet(wb,ws,'Clientes');
-  XLSX.writeFile(wb,'Frosty_Clientes_'+today()+'.xlsx');
+  XLSX.writeFile(wb,'VcontrolDemo_Clientes_'+today()+'.xlsx');
 }
 
 function exportXLS(){
@@ -1636,7 +1636,7 @@ function exportXLS(){
   const ws2=XLSX.utils.aoa_to_sheet(mrows);
   ws2['!cols']=[{wch:12},{wch:10},{wch:30},{wch:12},{wch:10},{wch:14},{wch:12},{wch:16},{wch:12},{wch:14},{wch:20},{wch:14},{wch:26},{wch:20}];
   XLSX.utils.book_append_sheet(wb,ws2,'Movimientos');
-  XLSX.writeFile(wb,'Frosty_Inventario_'+today()+'.xlsx');
+  XLSX.writeFile(wb,'VcontrolDemo_Inventario_'+today()+'.xlsx');
 }
 
 // FIX 2: exportPDF — convert img URL to base64 before adding to PDF
@@ -1684,12 +1684,12 @@ async function exportPDF(){
 
   // Frases por categoría Frosty
   const FRASES={
-    'Raspadillas':'Refrescante, colorida y llena de sabor. La clásica que nunca falla.',
-    'Cremoladas':'Cremosa, fría y con el sabor que te transporta a otro lugar.',
-    'Bubble Tea':'Bolitas que explotan de sabor. La experiencia más divertida en un vaso.',
-    'Helados':'Clásicos de siempre, en el sabor que más te gusta.',
-    'Bocaditos':'El complemento perfecto para acompañar tu bebida favorita.',
-    'Bebidas':'Frescura en cada sorbo, perfecta para cualquier momento.',
+    'Electrónica':'Tecnología que simplifica tu vida. Conectividad y rendimiento en un solo producto.',
+    'Ropa y Calzado':'Estilo y comodidad para cada ocasión. Calidad que se nota desde el primer uso.',
+    'Alimentos':'Sabor auténtico y calidad garantizada. Nutrición para tu día a día.',
+    'Hogar':'Transforma tu espacio con productos que combinan funcionalidad y estilo.',
+    'Belleza':'Cuídate con lo mejor. Ingredientes seleccionados para tu bienestar.',
+    'Bebidas':'Frescura en cada sorbo. La hidratación que necesitas, cuando la necesitas.',
     'default':'El producto que tus clientes van a amar.'
   };
   function getFrase(cat){return FRASES[cat]||FRASES['default'];}
@@ -1713,7 +1713,7 @@ async function exportPDF(){
     const nF=fotos.length;
     let fotosHTML='';
     if(nF===0){
-      fotosHTML='<div class="no-foto">🍦</div>';
+      fotosHTML='<div class="no-foto">📦</div>';
     } else if(nF===1){
       fotosHTML=`<div class="foto-wrap f1"><img src="${fotos[0]}" class="foto-img"></div>`;
     } else if(nF===2){
@@ -1772,8 +1772,8 @@ async function exportPDF(){
       <div class="spine"></div>
       <div class="hdr">
         <div class="hdr-left">
-          <div class="brand">🍦 Frosty Helados</div>
-          <div class="tagline">SABOR QUE ENAMORA · PERÚ 2026</div>
+          <div class="brand">📦 Vcontrol Demo</div>
+          <div class="tagline">GESTIÓN COMERCIAL · ETRAZIAPP 2026</div>
         </div>
         <div class="hdr-right">
           <div class="cat-name">${catName}</div>
@@ -1782,7 +1782,7 @@ async function exportPDF(){
       </div>
       <div class="gold-rule"></div>
       <div class="cards">${cards}</div>
-      <div class="ftr"><span>FROSTY HELADOS · CATÁLOGO CONFIDENCIAL · PERÚ</span></div>
+      <div class="ftr"><span>VCONTROL DEMO · CATÁLOGO · ETRAZIAPP</span></div>
     </div>`;
   }
 
@@ -1793,8 +1793,8 @@ async function exportPDF(){
   const portadaHTML=`<div class="page portada">
     <div class="portada-bg"></div>
     <div class="portada-content">
-      <div class="portada-logo">🍦</div>
-      <div class="portada-brand">FROSTY HELADOS</div>
+      <div class="portada-logo">📦</div>
+      <div class="portada-brand">VCONTROL DEMO</div>
       <div class="portada-divider"></div>
       <div class="portada-title">CATÁLOGO DE PRODUCTOS</div>
       <div class="portada-sub">Documento Confidencial · ${fecha}</div>
@@ -1805,7 +1805,7 @@ async function exportPDF(){
       </div>
     </div>
     <div class="portada-footer">
-      <span>powered by <strong>e·impact</strong> · Etrazia SAC</span>
+      <span>powered by <strong>ETRAZIAapp</strong> · Etrazia</span>
     </div>
   </div>`;
 
@@ -1917,11 +1917,11 @@ async function exportPDF(){
     }
   `;
 
-  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Catálogo Frosty Helados</title><style>${css}</style></head><body>${pagesHTML}</body></html>`;
+  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Catálogo Vcontrol Demo</title><style>${css}</style></head><body>${pagesHTML}</body></html>`;
   const blob=new Blob([html],{type:'text/html;charset=utf-8'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=url;a.download='catalogo-frosty-'+new Date().toISOString().slice(0,10)+'.html';
+  a.href=url;a.download='catalogo-vcontrol-demo-'+new Date().toISOString().slice(0,10)+'.html';
   document.body.appendChild(a);a.click();document.body.removeChild(a);
   try{const w=window.open(url,'_blank');if(!w)throw new Error('blocked');}
   catch(e){alert('Por favor permite ventanas emergentes para este sitio y vuelve a intentar.');}
@@ -1931,7 +1931,7 @@ async function exportPDF(){
 // ════════════════════════════════════════════════
 // MÉTODOS DE PAGO
 // ════════════════════════════════════════════════
-const PAY_KEY='frosty_pay_data_v1';
+const PAY_KEY='vcontrol_demo_pay_v1';
 let payData=JSON.parse(localStorage.getItem(PAY_KEY)||'{}');
 
 function syncPayToFirebase(){
@@ -2182,7 +2182,7 @@ async function exportPayPDF(){
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Frosty · Medios de Pago</title>
+<title>Vcontrol Demo · Medios de Pago</title>
 <style>${css}</style>
 </head>
 <body>
@@ -2190,8 +2190,8 @@ async function exportPayPDF(){
   <div class="spine"></div>
   <div class="hdr">
     <div>
-      <div class="brand">Frosty Helados</div>
-      <div class="tagline">Belleza que conecta · Perú 2026</div>
+      <div class="brand">Vcontrol Demo</div>
+      <div class="tagline">Gestión Comercial · EtraziApp 2026</div>
     </div>
     <div class="hdr-right">
       <div class="doc-title">Medios de Pago</div>
@@ -2210,7 +2210,7 @@ async function exportPayPDF(){
     <div class="pay-note-txt">Una vez realizado el pago, envía el comprobante por WhatsApp para confirmar tu pedido. Tu pedido se procesará una vez verificado el depósito.</div>
   </div>
   <div class="ftr">
-    <span>Frosty · Documento de pago</span>
+    <span>Vcontrol Demo · Medios de pago</span>
     <span>${fecha}</span>
   </div>
 </div>
@@ -2766,7 +2766,7 @@ function initAuth(){
   if(!auth)auth=firebase.auth();
 
   // ── 1. Intentar sesión desde sessionStorage (pasada por el portal) ──
-  const stored=sessionStorage.getItem('frosty_session');
+  const stored=sessionStorage.getItem('vcontrol_demo_session');
   if(stored){
     try{
       const sess=JSON.parse(stored);
@@ -2779,13 +2779,13 @@ function initAuth(){
         auth.onAuthStateChanged(user=>{
           if(!user){
             // Si Firebase cierra sesión, limpiar y redirigir al portal
-            sessionStorage.removeItem('frosty_session');
+            sessionStorage.removeItem('vcontrol_demo_session');
             window.location.href=PORTAL_URL;
           }
         });
         return;
       }
-    }catch(e){sessionStorage.removeItem('frosty_session');}
+    }catch(e){sessionStorage.removeItem('vcontrol_demo_session');}
   }
 
   // ── 2. Sin sessionStorage: esperar Firebase Auth con timeout ──
@@ -2806,7 +2806,7 @@ function initAuth(){
       currentUser=user;
       await loadUserRole(user.uid);
       // Guardar sesión en sessionStorage para próximas cargas
-      sessionStorage.setItem('frosty_session',JSON.stringify({
+      sessionStorage.setItem('vcontrol_demo_session',JSON.stringify({
         email:user.email,uid:user.uid,role:currentRole
       }));
       showApp();
@@ -2911,7 +2911,7 @@ async function doLogin(){
 function showLoginError(msg){const el=document.getElementById('login-error');el.textContent=msg;el.classList.add('show');}
 async function doLogout(){
   toggleUserMenu();
-  sessionStorage.removeItem('frosty_session');
+  sessionStorage.removeItem('vcontrol_demo_session');
   try{await auth.signOut();}catch(e){}
   window.location.href=PORTAL_URL;
 }
@@ -3061,8 +3061,8 @@ window.addEventListener('load',()=>{
   </div>
   <div class="fr" id="pr-cat-row" style="display:none"><label>Categoría</label>
     <select id="pr-cat">
-      <option>Raspadillas</option><option>Cremoladas</option><option>Bubble Tea</option>
-      <option>Helados</option><option>Bocaditos</option><option>Bebidas</option><option>Otro</option>
+      <option>Electrónica</option><option>Ropa y Calzado</option><option>Alimentos</option>
+      <option>Bebidas</option><option>Hogar</option><option>Belleza</option><option>Otro</option>
     </select>
   </div>
   <div style="background:var(--grn-bg);border-radius:var(--rs);padding:10px 14px;font-size:13px;color:var(--grn);margin-top:4px" id="pr-preview"></div>
