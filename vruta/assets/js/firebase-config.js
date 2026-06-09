@@ -1,6 +1,6 @@
 // ============================================================
 // VRUTA DEMO — Firebase Config
-// Proyecto: eimpact-demo
+// Proyecto: vruta-demo
 // ============================================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -8,11 +8,12 @@ import { getAuth }       from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getFirestore }  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey:            "AIzaSyA7O4smNpxXVfOuwvIZKkqGqWyVqdPBY7s",
-  authDomain:        "eimpact-demo.firebaseapp.com",
-  databaseURL:       "https://eimpact-demo-default-rtdb.firebaseio.com",
-  projectId:         "eimpact-demo",
-  appId:             "1:461580241894:web:8640085a35901bd05e2427"
+  apiKey:            "AIzaSyCzX3QK3cm9UZ46GMZ7lbNZ58ShRDr3qFc",
+  authDomain:        "vruta-demo.firebaseapp.com",
+  projectId:         "vruta-demo",
+  storageBucket:     "vruta-demo.firebasestorage.app",
+  messagingSenderId: "752394046683",
+  appId:             "1:752394046683:web:a80cde825fb6d4c99590fe"
 };
 
 const app = initializeApp(firebaseConfig);
