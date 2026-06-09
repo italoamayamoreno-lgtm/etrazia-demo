@@ -388,7 +388,7 @@ const auth = getAuth(initializeApp(firebaseConfig));
 /* ── DESTINOS DE CADA APP ─────────────────────────────────────────── */
 const APP_URLS = {
   vcontrol: 'vcontrol/index.html',
-  vruta:    'vruta/index.html',
+  vruta:    'https://vruta.etraziapp.com',
 };
 
 /* ── AUTH STATE ───────────────────────────────────────────────────── */
@@ -461,6 +461,17 @@ window.navigate = function(view, el) {
 window.goToApp = function(appId) {
   const url = APP_URLS[appId];
   if (!url) { showToast('App no disponible.', 'error'); return; }
+
+  // Guardar sesión en sessionStorage para auto-login en apps internas
+  const user = auth.currentUser;
+  if (user) {
+    sessionStorage.setItem('vcontrol_demo_session', JSON.stringify({
+      email: user.email,
+      uid:   user.uid,
+      role:  'admin'
+    }));
+  }
+
   window.location.href = url;
 };
 
