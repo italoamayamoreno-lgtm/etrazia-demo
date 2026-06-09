@@ -253,7 +253,7 @@
       const sess = JSON.parse(demoSession);
       if (sess && sess.email && sess.uid) {
         // Inyectar sesión demo como operador y redirigir al dashboard
-        sessionStorage.setItem('vruta_sesion', JSON.stringify({
+        sessionStorage.setItem('vruta_usuario', JSON.stringify({
           uid:    sess.uid,
           email:  sess.email,
           rol:    'operador',
