@@ -246,23 +246,15 @@
   import { login, redirigirPorRol, getSesion } from "./assets/js/auth.js";
 
   // ── AUTO-LOGIN DEMO ───────────────────────────────────────────────────
-  // Si viene del panel demo (demo.etraziapp.com), entrar directo sin login
+  // Si viene del panel demo, hacer login real con credenciales del operador
   const demoSession = sessionStorage.getItem('vcontrol_demo_session');
   if (demoSession) {
     try {
-      const sess = JSON.parse(demoSession);
-      if (sess && sess.email && sess.uid) {
-        // Inyectar sesión demo como operador y redirigir al dashboard
-        sessionStorage.setItem('vruta_usuario', JSON.stringify({
-          uid:    sess.uid,
-          email:  sess.email,
-          rol:    'operador',
-          nombre: 'Demo EtraziApp',
-          empresa_id: "demo"
-        }));
-        window.location.href = 'dashboard.html';
-      }
-    } catch(e) { /* sesión inválida, continuar con login normal */ }
+      const usuario = await login('operador@vruta-demo.com', 'Vruta2026#');
+      redirigirPorRol(usuario.rol);
+    } catch(e) {
+      console.error('Auto-login demo falló:', e);
+    }
   }
   // ─────────────────────────────────────────────────────────────────────
 
