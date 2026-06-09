@@ -27,7 +27,7 @@ export async function login(email, password) {
 export async function logout() {
   limpiarSesion();
   await signOut(auth);
-  window.location.href = "/index.html";
+  window.location.href = "/vruta/index.html";
 }
 
 // ── Obtener datos del usuario desde Firestore ────────────────
@@ -57,7 +57,7 @@ export function requireAuth(rolRequerido = null) {
   const usuario = getSesion();
 
   if (!usuario) {
-    window.location.href = "/index.html";
+    window.location.href = "/vruta/index.html";
     return null;
   }
 
@@ -73,9 +73,9 @@ export function requireAuth(rolRequerido = null) {
 // ── Redirección por rol ──────────────────────────────────────
 export function redirigirPorRol(rol) {
   const rutas = {
-    superadmin: "/dashboard.html",
-    operador:   "/dashboard.html",
-    repartidor: "/repartidor.html"
+    superadmin: "/vruta/dashboard.html",
+    operador:   "/vruta/dashboard.html",
+    repartidor: "/vruta/repartidor.html"
   };
   window.location.href = rutas[rol] || "/index.html";
 }
