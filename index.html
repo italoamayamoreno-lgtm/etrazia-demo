@@ -147,6 +147,8 @@ input { font-family: var(--font-body); font-size: 14px; }
 .app-card:hover::before { opacity: 1; }
 .app-card.vcontrol::before { background: var(--accent); }
 .app-card.vruta::before { background: var(--teal); }
+.app-card.vloyalty::before { background: var(--blue); }
+.app-card.vloyalty .app-icon { background: var(--blue-bg); }
 
 .app-top { display: flex; align-items: flex-start; gap: 14px; }
 .app-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
@@ -262,6 +264,10 @@ input { font-family: var(--font-body); font-size: 14px; }
         <div class="nav-icon">🚚</div>
         <span class="nav-label">Vruta</span>
       </div>
+      <div class="nav-item" onclick="goToApp('vloyalty')">
+        <div class="nav-icon">🎁</div>
+        <span class="nav-label">VLoyalty</span>
+      </div>
       <div class="nav-section">Cuenta</div>
       <div class="nav-item" onclick="navigate('ayuda', this)">
         <div class="nav-icon">
@@ -349,6 +355,28 @@ input { font-family: var(--font-body); font-size: 14px; }
             </div>
           </div>
 
+          <!-- VLOYALTY -->
+          <div class="app-card vloyalty" onclick="goToApp('vloyalty')">
+            <div class="app-top">
+              <div class="app-icon">🎁</div>
+              <div class="app-info">
+                <div class="app-name">VLoyalty</div>
+                <div class="app-desc">Programa de puntos standalone para negocios. Acumula, canjea y fideliza a tus clientes automáticamente.</div>
+              </div>
+            </div>
+            <div class="app-features">
+              <div class="app-feat">Puntos por cada venta registrada</div>
+              <div class="app-feat">Canje de premios configurables</div>
+              <div class="app-feat">Notificación automática por correo</div>
+              <div class="app-feat">Bot WhatsApp con IA (Anthropic)</div>
+              <div class="app-feat">Integración Vcontrol · Shopify · Wix</div>
+            </div>
+            <div class="app-footer">
+              <span class="app-badge-live">Demo activa</span>
+              <span class="app-cta">Abrir demo →</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -389,6 +417,7 @@ const auth = getAuth(initializeApp(firebaseConfig));
 const APP_URLS = {
   vcontrol: 'vcontrol/index.html',
   vruta:    'https://vruta.etraziapp.com',
+  vloyalty: 'https://italoamayamoreno-lgtm.github.io/etraziapp-vloyalty/',
 };
 
 /* ── AUTH STATE ───────────────────────────────────────────────────── */
